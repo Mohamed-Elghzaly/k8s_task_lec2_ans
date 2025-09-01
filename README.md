@@ -1,6 +1,5 @@
 # k8s task lec2 answer
-
-###Part1:
+## Part1:
 
 **1- create pod nginx with name my nginx direct from command don't use yaml file**
 
