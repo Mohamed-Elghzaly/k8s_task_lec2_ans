@@ -178,7 +178,7 @@
     
     <img src="images/9.png">
 ---
-10-Scale down the pods aging to 2 without scale command use terminal  
+### 10-Scale down the pods aging to 2 without scale command use terminal  
 
   - **explaination:** Scale down the pods aging to 2 without scale command use terminal
   - **command** :
@@ -193,3 +193,155 @@
     <img src="images/10-1.png">
     <img src="images/10-2.png">
 ---
+### 11-find out the issue in the below Yaml (don't use AI)
+
+    apiVersion: apps/v1
+    kind: ReplicaSet
+    metadata:
+      name: replicaset-2
+    spec:
+      replicas: 2
+      selector:
+        matchLabels:
+          tier: frontend
+      template:
+        metadata:
+          labels:
+            tier: nginx
+        spec:
+          containers:
+          - name: nginx
+            image: nginx
+
+  - **explaination:** labels must be the same as selector
+  - **after correction** :
+
+        apiVersion: apps/v1
+        kind: ReplicaSet
+        metadata:
+          name: replicaset-2
+        spec:
+          replicas: 2
+          selector:
+            matchLabels:
+              tier: frontend
+          template:
+            metadata:
+              labels:
+                tier: frontend
+            spec:
+              containers:
+              - name: nginx
+                image: nginx
+
+---
+### 12-find out the issue in the below Yaml (don't use AI)
+    
+    apiVersion: apps/v1
+    kind: deployment
+    metadata:
+      name: deployment-1
+    spec:
+      replicas: 2
+      selector:
+        matchLabels:
+          name: busybox-pod
+      template:
+        metadata:
+          labels:
+            name: busybox-pod
+        spec:
+          containers:
+          - name: busybox-container
+            image: busybox
+            command:
+            - sh
+            - "-c"
+            - echo Hello Kubernetes! && sleep 3600
+            
+  - **explaination:** kubernates is a case sensitive because it written in YAML
+  - **after correction** :
+    
+        kind: Deployment
+---
+### 13- find out the issue in the below Yaml (don't use AI)
+
+    apiVersion: v1
+    kind: Deployment
+    metadata:
+      name: deployment-1
+    spec:
+      replicas: 2
+      selector:
+        matchLabels:
+          name: busybox-pod
+      template:
+        metadata:
+          labels:
+            name: busybox-pod
+        spec:
+          containers:
+          - name: busybox-container
+            image: busybox
+            command:
+            - sh
+            - "-c"
+            - echo Hello Kubernetes! && sleep 3600
+
+  - **explaination:** in deployment apiVersion must be app/v1
+  - **after correction** :
+
+        apiVersion: apps/v1
+
+---
+### 14- what's command you use to know what Image name that running the deployment 
+
+  - **command** :
+
+        kubectl get deploy -o wide
+    
+  - **Screenshot** :
+
+    <img src="images/14.png">
+---
+### 15- create deployment using following data :
+  - Name: httpd-frontend;
+  - Replicas: 3;
+  - Image: httpd:2.4-alpine
+
+  - **command** :
+
+        kubectl apply -f deploy.yaml 
+  - **output of command** :
+
+        deployment.apps/httpd-frontend created
+    
+  - **Screenshot** :
+    
+    <img src="images/15.png">
+---
+### 16- replace the image to nginx777 with command directly 
+
+  - **command** :
+
+        kubectl set image deployment/httpd-frontend httpd=nginx777 
+  - **output of command** :
+
+        deployment.apps/httpd-frontend image updated
+    
+  - **Screenshot** :
+    
+    <img src="images/16.png">---
+### 17- rollback to pervious version
+
+  - **command** :
+
+        kubectl rollout undo deployment httpd-frontend --to-revision=1
+  - **output of command** :
+
+        deployment.apps/httpd-frontend rolled back
+    
+  - **Screenshot** :
+    
+    <img src="images/17-1.png">
+    <img src="images/17-2.png">
