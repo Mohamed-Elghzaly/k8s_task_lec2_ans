@@ -331,7 +331,8 @@
     
   - **Screenshot** :
     
-    <img src="images/16.png">---
+    <img src="images/16.png">
+---
 ### 17- rollback to pervious version
 
   - **command** :
@@ -345,3 +346,18 @@
     
     <img src="images/17-1.png">
     <img src="images/17-2.png">
+---
+### 18- Create a Simple Web Application:
+* Use a Dockerfile to create a simple web application (e.g., an Nginx server serving an HTML page).
+* Build the Docker image and push it to DockerHub your private Account.
+    
+  - **Screenshot** :
+    
+    <img src="images/18-1.png">
+    <img src="images/18-2.png">
+### 19- Create a Deployment Using This Image:
+* Deploy the Docker image from DockerHub to Kubernetes with a Deployment that has 3 replicas.
+    
+  - **Screenshot** :
+    
+    <img src="images/19.png">
