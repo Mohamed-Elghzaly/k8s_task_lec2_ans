@@ -3,11 +3,19 @@
 
 **1- create pod nginx with name my nginx direct from command don't use yaml file**
 
-  - **explaination**:         create pod with name of my-nginx and run on port 80
+  - **explaination:** create pod with name of my-nginx and run on port 80
   - **command** :
-                        `kubectl run my-nginx --image=nginx --port=80`
-  - **output of command** :   `pod/my-nginx created`
-  - **Screenshot** : 
+
+
+        kubectl run my-nginx --image=nginx --port=80
+  - **output of command** :
+
+        pod/my-nginx created
+    
+  - **Screenshot** :
+    
+    <img src="images/1.png">
+---
         
 2- create pod nginx with name my nginx command and use Image nginx123  direct from command don't use yaml file
 
