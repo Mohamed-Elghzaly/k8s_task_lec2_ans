@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myporfile
+  labels:
+    app: porfile
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: porfile
+  template:
+    metadata:
+      labels:
+        app: porfile
+    spec:
+      containers:
+      - name: my-porfile
+        image: mohamed010/my-portfolio
+        ports:
+        - containerPort: 80
+  
